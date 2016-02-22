@@ -1,7 +1,7 @@
 # Earnings Code Challenge
 
 
-This is Gilbert Alipui second version of the Teikametrics code challenge.  Thank you for granting me the opportunity to tackle this challenge.  I have enjoyed working so much that I created a second version.  
+This is Gilbert Alipui's second version of the Teikametrics code challenge.  Thank you for granting me the opportunity to tackle this challenge.  I have enjoyed working so much that I created a second version.  
 This version features a more polished front-end UI built with Extjs, and employs my own hand-coded MVC framework on the back-end.
 
 <b>How to View the Solution</b>
