@@ -93,9 +93,9 @@ Ext.application({
 														name: form.getValues('name')
 													 },
 												success: function(response){  // on success, display search results
-                                                    form.reset();   
+                                                    //form.reset();   
                                                     var msg = response.responseText; 
-                                                    var title = 'Input Required'
+                                                    var title = 'Query Results.  Please click O.K. When done';
                                                     Ext.MessageBox.alert(title, msg, myCallback);
 												},
 												failure: function () {

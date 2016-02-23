@@ -6,7 +6,7 @@
 $name = cleanGet($_GET);
 
 // eliminates quotes from passed parameters
-function cleanGet($_GET)
+function cleanGet()
 {
   $var = $_GET['name'];
   $dirty = stripslashes($var);
@@ -17,20 +17,21 @@ function cleanGet($_GET)
  return $clean;
 }
 
-
 // this model class handles data processing
 class ModelClass {  
 
     // initialize the variables/properties
     private $response;
     private $url = "http://localhost/earnings_code_challenge/view.php";
-    private $totalrows = 0;
 
     //the constructor    
     public function __construct() {}
 
     public function getAverageSalary()
-    {
+    {	
+		$totalrows = 0;
+		$sum = 0;
+		
         // I am using javascript to validate on the client side, but I am validating on the server side too just in case		   
 	    if (empty($_GET["name"])) 
 	    {
@@ -76,21 +77,23 @@ class ModelClass {
 		}	
           
 	    //calculate the average salary
-	    if($totalrows > 0)
-	    {
+	    //2/23/16 bug fix. format_money() appears not to work on Windows, yet it works on OSX!
+	    //removed format_money until I find a suitable workaround to display the us currency in the proper format.		
+		if(!$totalrows){
+		   // no data found, the program will return to the start page, but inform the user. The message may be visible on a slower system.
+		   echo "Sorry no data found for: " . $searchstring . "<br>";		  
+		   return 0;	
+		}else{		
 		  $average = $sum / $totalrows;
 
 		  // report back earnings information as required
-		  echo "<br>The Grand Total Salary for the " . $searchstring . " positions-> is : " . money_format('%i', $sum) . "<br>";
+		  echo "<br>The Grand Total Salary for the " . $searchstring . " positions-> is : $" .  $sum . "<br>";
 		  echo "The total rows is : " . $totalrows . "<br>";
 
-		  echo "The Average salary for the " . $searchstring . " position based on Total Earnings is: <br>". money_format('%i', $sum) . " divided by total number of records " . $totalrows . " = " . money_format('%i', $average) . "<br>";	  
-		  return 1;
-	    }else{
-		  // no data found, the program will return to the start page, but inform the user. The message may be visible on a slower system.
-		  echo "Sorry no data found for: " . $searchstring . "<br>";		  
-		  return 0;		  
-	    }	
+		  echo "The Average salary for the " . $searchstring . " position based on Total Earnings is: $". $sum . " divided by total number of records " . $totalrows . " = $" .  $average . "<br>";	  
+		  return 1;		
+		}
+
    }
     
 } //end of model

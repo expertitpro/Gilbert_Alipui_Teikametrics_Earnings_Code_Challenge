@@ -1,6 +1,7 @@
 <?php
 //this file is controller_ajax_calls_model.php.  It is called by view.html.  It in turn calls model.php
 
+
 class CalculateEarnings {
     
 
@@ -12,10 +13,12 @@ class CalculateEarnings {
   		        
 	    $var = $_GET['name'];
 		$search = stripslashes($var);  // eliminated quotes
+		
 
 		$pieces = explode("=", $search);  // split up key, value pair to get the value
 		$name = $pieces[1];  //assign the value to variable
 	
+		
  		 // prints currency in the international format for the en_US locale
 		 setlocale(LC_MONETARY, 'en_US');
 
@@ -25,9 +28,11 @@ class CalculateEarnings {
 			require_once('../model/model_echo_to_controller_ajax_calls_model.php');
 		}
 
-		if($GET)
+
+		if(!$_GET)
 		{
 		  // do nothing. prevents caling the controller prematurely leading to division by zero!
+		   exit;
 		 }else{
 		  // ensure the controller is only called on POST
 		  callModel();
@@ -40,7 +45,7 @@ class CalculateEarnings {
 		// because the positional issues of the 0th (first) character per api documentation. 
 		if ($pos1 !== false) 
 		{
-			if(!"GET")
+			if(!$_GET)
 			{
 			  // do nothing. prevents caling the controller prematurely leading to division by zero!
 			  return 1;	
