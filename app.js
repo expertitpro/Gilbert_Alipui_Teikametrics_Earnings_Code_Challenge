@@ -93,7 +93,7 @@ Ext.application({
 														name: form.getValues('name')
 													 },
 												success: function(response){  // on success, display search results
-                                                    //form.reset();   
+                                                    form.reset();   
                                                     var msg = response.responseText; 
                                                     var title = 'Query Results.  Please click O.K. When done';
                                                     Ext.MessageBox.alert(title, msg, myCallback);
@@ -104,7 +104,7 @@ Ext.application({
 											});
 
                                         } else {  // display an error if there is a failure
-                                            Ext.Msg.alert('Error', 'Fix the errors in the form')
+                                            Ext.Msg.alert('Error', 'Please fix the errors in the form')
                                         }
                                     }
                                 },{
