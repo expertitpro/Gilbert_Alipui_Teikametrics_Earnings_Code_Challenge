@@ -11,25 +11,6 @@ Ext.application({
     name: 'MyApp',
     
     launch: function () {
-
-            windowTerms = new Ext.Window({
-                autoWidth: true,
-                autoHeight: true,
-                header: false,
-                closable: false,
-                modal: false,
-                autoScroll: true,
-                frame: false,
-                border: false,
-                html: html
-            }); 
-            windowTerms.show();
-        }
-
-        //function window_termspopClose() {
-        //   windowTerms.hide();
-        //}
-
         Ext.create('Ext.container.Viewport', { 
                    
             // Viewport is specialized container which represents the browser’s application view area. 
@@ -112,8 +93,10 @@ Ext.application({
 														name: form.getValues('name')
 													 },
 												success: function(response){  // on success, display search results
-													//console.log(response.responseText);
-													Ext.Msg.alert("Success! " + response.responseText);
+                                                    form.reset();   
+                                                    var msg = response.responseText; 
+                                                    var title = 'Input Required'
+                                                    Ext.MessageBox.alert(title, msg, myCallback);
 												},
 												failure: function () {
 													Ext.Msg.alert('failure');
@@ -136,6 +119,15 @@ Ext.application({
                 }]
 
         });
-	Ext.getCmp('name').focus('', 10);
+	Ext.getCmp('name').focus('', 10);  // position the cursor inside the texfield for user convenience
+
+    // callback for the scrollable message box
+    var myCallback = function(btn, text) {
+         console.info( btn + ' Pressed.');
+        if (text) {
+          console.info(text + ' entered.')
+        }
     }
+
+  }
 });
