@@ -1,7 +1,7 @@
 /*
 * Gilbert Alipui
-* Teikametrics Earnings Code Challenge
-* Adapted code this code from https://github.com/ananddayalan / extjs-by-example-customer-feedback-form
+* Teikametrics Earnings Code Challenge.
+* Adapted this code from https://github.com/ananddayalan / extjs-by-example-customer-feedback-form
 *
 * This file is app.js.  It calls ../controller/controller_ajax_calls_model.php whih calls 
 */

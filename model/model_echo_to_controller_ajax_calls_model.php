@@ -87,10 +87,11 @@ class ModelClass {
 		  $average = $sum / $totalrows;
 
 		  // report back earnings information as required
-		  echo "<br>The Grand Total Salary for the " . $searchstring . " positions-> is : $" .  $sum . "<br>";
+		  // 2/23/16 money format on windows workaround.  Using number_format($value, 2).  Only supports US Currency. No support for European currency e.g. 1000,00 for example.
+		  echo "<br>The Grand Total Salary for the " . $searchstring . " positions-> is : $ " .  number_format($sum, 2) . "<br>";
 		  echo "The total rows is : " . $totalrows . "<br>";
 
-		  echo "The Average salary for the " . $searchstring . " position based on Total Earnings is: $". $sum . " divided by total number of records " . $totalrows . " = $" .  $average . "<br>";	  
+		  echo "The Average salary for the " . $searchstring . " position based on Total Earnings is: $ ". number_format($sum, 2) . " divided by total number of records " . $totalrows . " = $ " .  number_format($average, 2) . "<br>";	  
 		  return 1;		
 		}
 
