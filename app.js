@@ -11,6 +11,25 @@ Ext.application({
     name: 'MyApp',
     
     launch: function () {
+
+            windowTerms = new Ext.Window({
+                autoWidth: true,
+                autoHeight: true,
+                header: false,
+                closable: false,
+                modal: false,
+                autoScroll: true,
+                frame: false,
+                border: false,
+                html: html
+            }); 
+            windowTerms.show();
+        }
+
+        //function window_termspopClose() {
+        //   windowTerms.hide();
+        //}
+
         Ext.create('Ext.container.Viewport', { 
                    
             // Viewport is specialized container which represents the browser’s application view area. 
